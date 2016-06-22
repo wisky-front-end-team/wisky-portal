@@ -47,14 +47,12 @@
         el.wrapInner("<div class='ibg-bg'></div>")
       }
 
-
-
-      // Set background to the newly added container.
+      // Set background to the newly added container. no-repeat center center
 
       if (el.data("ibg-bg") !== undefined) {
         el.find("> .ibg-bg").css({
-          background: "url('" + el.data("ibg-bg") + "') no-repeat center center",
-          "background-size": "cover",
+          background: "url('" + el.data("ibg-bg") + "') ",
+          //"background-size": "cover",
         });
       }
 
@@ -62,8 +60,6 @@
         width: w,
         height: h
       })
-
-
 
       if(has_touch || screen.width <= 699) {
         // For Mobile
@@ -84,13 +80,13 @@
                    "-o-transform": "matrix(" + settings.scale + ",0,0," + settings.scale + "," + newX + "," + newY + ")",
                    "transform": "matrix(" + settings.scale + ",0,0," + settings.scale + "," + newX + "," + newY + ")"
                  });
-
           }
 
       } else {
         // For Desktop
         // Animate only scaling when mouse enter
         el.mouseenter(function(e) {
+
           // Calc new X, Y
           var pageX = e.pageX || e.clientX,
               pageY = e.pageY || e.clientY,
@@ -100,10 +96,7 @@
               newY = ((sh * pageY)) * - 1;
           if (settings.scale != 1) el.addClass("ibg-entering")
           el.find("> .ibg-bg").css({
-            "-webkit-transform": "matrix(" + settings.scale + ",0,0," + settings.scale + "," + newX + "," + newY + ")",
-            "-moz-transform": "matrix(" + settings.scale + ",0,0," + settings.scale + "," + newX + "," + newY + ")",
-            "-o-transform": "matrix(" + settings.scale + ",0,0," + settings.scale + "," + newX + "," + newY + ")",
-            "transform": "matrix(" + settings.scale + ",0,0," + settings.scale + "," + newX + "," + newY + ")",
+            "transform": "scale(1.3) translate3d("+newX+"px,"+newY+"px,0)",
             "-webkit-transition": "-webkit-transform " + settings.animationSpeed + " linear",
             "-moz-transition": "-moz-transform " + settings.animationSpeed + " linear",
             "-o-transition": "-o-transform " + settings.animationSpeed + " linear",
@@ -121,15 +114,13 @@
               pageY = (pageY - el.offset().top) - (h / 2),
               newX = ((sw * pageX)) * - 1,
               newY = ((sh * pageY)) * - 1;
+              //alert(newX + ' - ' + newY);
           // This condition prevents transition from causing the movement of the background to lag
           if (!el.hasClass("ibg-entering") && !el.hasClass("exiting")) {
             // Use matrix to move the background from its origin
             // Also, disable transition to prevent lag
             el.find("> .ibg-bg").css({
-              "-webkit-transform": "matrix(" + settings.scale + ",0,0," + settings.scale + "," + newX + "," + newY + ")",
-              "-moz-transform": "matrix(" + settings.scale + ",0,0," + settings.scale + "," + newX + "," + newY + ")",
-              "-o-transform": "matrix(" + settings.scale + ",0,0," + settings.scale + "," + newX + "," + newY + ")",
-              "transform": "matrix(" + settings.scale + ",0,0," + settings.scale + "," + newX + "," + newY + ")",
+            "transform": "scale(1.3) translate3d("+newX+"px,"+newY+"px,0)",
               "-webkit-transition": "none",
               "-moz-transition": "none",
               "-o-transition": "none",
@@ -147,10 +138,6 @@
           if (settings.scale != 1) el.addClass("ibg-exiting")
           // Same condition applies as mouseenter. Rescale the background back to its original scale
           el.addClass("ibg-exiting").find("> .ibg-bg").css({
-            "-webkit-transform": "matrix(" + settings.scale + ",0,0," + settings.scale + "," + newX + "," + newY + ")",
-            "-moz-transform": "matrix(" + settings.scale + ",0,0," + settings.scale + "," + newX + "," + newY + ")",
-            "-o-transform": "matrix(" + settings.scale + ",0,0," + settings.scale + "," + newX + "," + newY + ")",
-            "transform": "matrix(" + settings.scale + ",0,0," + settings.scale + "," + newX + "," + newY + ")",
             "-webkit-transition": "-webkit-transform " + settings.animationSpeed + " linear",
             "-moz-transition": "-moz-transform " + settings.animationSpeed + " linear",
             "-o-transition": "-o-transform " + settings.animationSpeed + " linear",

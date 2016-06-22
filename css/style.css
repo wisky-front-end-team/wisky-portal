@@ -8,8 +8,7 @@
 }
 
 .ibg-bg {
-  background: url("../images/pizza.jpg") center center / cover no-repeat !important;
-  transform: scale(1.3);
+  transform: scale(1.3) translate3d(0,0,0);
 }
 
 .header {
@@ -48,6 +47,7 @@
   background: #74bf04;
 	border-radius: 4px;
 	transition: .5s;
+	text-decoration:none;
 }
 
 .header .btn-continue:hover {
