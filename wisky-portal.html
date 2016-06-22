@@ -21,11 +21,13 @@
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,700' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Pacifico:400' rel='stylesheet' type='text/css'>
   -->
+  <link href='css/bootstrap.css' rel='stylesheet' type='text/css'>
   <link href='css/interactive_bg.css' rel='stylesheet' type='text/css'>
   <link href='css/style.css' rel='stylesheet' type='text/css'>
 
 	<script type="text/javascript" src="js/jquery-1.12.1.min.js"></script>
   <script type="text/javascript" src="js/jquery.interactive_bg.js"></script>
+  <script type="text/javascript" src="js/bootstrap.js"></script>
 
 	<script>
 	  $(document).ready(function(){
@@ -68,12 +70,42 @@
           </a>
         </div>
 
+      </div><!--/header-->
 
+    </div><!--/main-->
+
+    <div class="docs">
+      <div class="docs-head">
+        Khi ấn nút ở trên là bạn đã đồng ý với
+        <a href='#'>Các quy định và điều khoản về mạng</a>
       </div>
+      <ul class="docs-nav">
+        <li class="">
+          <a href="#about" data-toggle="tab">Thông tin về chúng tôi</a>
+        </li>
+        <li>
+          <a href="#rule" data-toggle="tab">Các quy định & điều khoản</a>
+        </li>
+      </ul>
+    </div><!-- /docs -->
 
+  </div><!-- /wrapper bg -->
 
-    </div>
+  <div class="docs-body-wrapper">
+    <!-- DOCS BODY -->
+    <ul class="tab-content docs-body">
+      <li id="about" class="tab-pane fade">
+        Hãy trở thành một trong những nhà tài trợ Wi-Fi để có thể nắm được cơ hội duy nhất đến với các khách hàng của bạn, giúp họ tiết kiệm chi phí mạng trên di động. Tài trợ mạng trên di động là tương lai của Nhà Quản Trị Thương Hiệu - Quan Hệ Khách Hàng. Hãy tạo nên sự khác biệt và làm cho thương hiệu của bạn ngày càng được yêu mến!
+      </li>
+      <li id="rule" class="tab-pane fade">
+        Terms and conditions
+
+        SOCIFI Ltd., a provider of SOCIFI Network and a licenser of SOCIFI Connection (hereinafter “provider”), undertakes to respect privacy of user of SOCIFI services (hereinafter “network services”), the same obligation is undertaken by an operator of network services (hereinafter "network operator"). The provider and the network operator oblige to handle the collected information according to the law, esp. to Directive 95/46/EC.
+      </li>
+    </ul>
+    <!-- /DOCS BODY -->
   </div>
+
   <!--
   <script>
   	var _gaq=[['_setAccount','UA-11278966-1'],['_trackPageview']]; // Change UA-XXXXX-X to be your site's ID

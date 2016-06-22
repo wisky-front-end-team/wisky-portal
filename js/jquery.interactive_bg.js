@@ -137,6 +137,13 @@
             });
           }
         }).mouseleave(function(e) {
+          // Calc new X, Y
+          var pageX = e.pageX || e.clientX,
+              pageY = e.pageY || e.clientY,
+              pageX = (pageX - el.offset().left) - (w / 2),
+              pageY = (pageY - el.offset().top) - (h / 2),
+              newX = ((sw * pageX)) * - 1,
+              newY = ((sh * pageY)) * - 1;
           if (settings.scale != 1) el.addClass("ibg-exiting")
           // Same condition applies as mouseenter. Rescale the background back to its original scale
           el.addClass("ibg-exiting").find("> .ibg-bg").css({
