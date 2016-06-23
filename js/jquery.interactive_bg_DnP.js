@@ -86,8 +86,8 @@
 			function deviceMotionHandler(eventData) {
 				var gamma = event.gamma;
 				var move = gamma, duration = 0.2;;
-				if(move>50){move=50}
-				if(move<-50){move=-50}
+				// if(move>50){move=50}
+				// if(move<-50){move=-50}
 				// if(gamma>50 || gamma < -50){
 					// duration = 1;
 					// // ,"-webkit-transition-duration": duration+"s",
