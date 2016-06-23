@@ -88,14 +88,14 @@
 				var move = gamma, duration = 0.2;;
 				if(move>50){move=50}
 				if(move<-50){move=-50}
-				if(gamma>50 || gamma < -50){
-					duration = 1;
-				}
+				// if(gamma>50 || gamma < -50){
+					// duration = 1;
+					// // ,"-webkit-transition-duration": duration+"s",
+					// // "transition-duration":duration+"s"
+				// }
                  el.find("> .ibg-bg").css({
                    "-webkit-transform": "scale(1.3) translate3d("+move+"px,"+0+"px,0)",
                     "transform": "scale(1.3) translate3d("+move+"px,"+0+"px,0)"
-					// ,"-webkit-transition-duration": duration+"s",
-					// "transition-duration":duration+"s"
                  });
 			}
 
