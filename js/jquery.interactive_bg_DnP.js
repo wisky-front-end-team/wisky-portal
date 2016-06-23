@@ -18,7 +18,7 @@
   // Init params
   var defaults = {
     strength: 60,
-    scale: 1.3,
+    scale: 2.0,
     animationSpeed: "100ms",
     contain: true,
     wrapContent: false
@@ -61,7 +61,11 @@
 
       el.find("> .ibg-bg").css({
         width: w,
-        height: h
+        height: h,
+        "-webkit-transform": "scale("+settings.scale+")",
+        "-o-transform": "scale("+settings.scale+")",
+        "-moz-transform": "scale("+settings.scale+")",
+        "transform": "scale("+settings.scale+")"
       })
 
       if(has_touch || screen.width <= 699) {
