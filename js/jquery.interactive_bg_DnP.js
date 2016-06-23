@@ -84,9 +84,9 @@
 		  
 			function deviceMotionHandler(eventData) {
 				//var accX = event.acceleratonIncludingGravity.x,
-				//accX = event.acceleration.x;
+				accX = event.acceleration.x,
 				//accX = event.rotationRate.alpha;
-				var accX = Math.round(event.acceleration.x*10) / 10,
+				//var accX = Math.round(event.acceleration.x*10) / 10,
                  xA = -(accX / 10) * 60,
                  newX = -(xA*2);
                  
