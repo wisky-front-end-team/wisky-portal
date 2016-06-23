@@ -83,19 +83,19 @@
 			// }
 		  
 			function deviceMotionHandler(eventData) {
-				//var accX = event.acceleratonIncludingGravity.x;
+				var accX = event.acceleratonIncludingGravity.x,
 				//accX = event.acceleration.x;
 				//accX = event.rotationRate.alpha;
-				var accX = Math.round(event.accelerationIncludingGravity.x*10) / 10,
+				//var accX = Math.round(event.accelerationIncludingGravity.x*10) / 10,
                  xA = -(accX / 10) * 60,
                  newX = -(xA*2);
                  
 
                  el.find("> .ibg-bg").css({
-                   "-webkit-transform": "scale(1.3) translate3d("+0+"px,"+newX+"px,0)",
+                   "-webkit-transform": "scale(1.3) translate3d("+newX+"px,"+0+"px,0)",
                    "-moz-transform": "scale(1.3) translate3d("+newX+"px,"+0+"px,0)",
                    "-o-transform": "scale(1.3) translate3d("+newX+"px,"+0+"px,0)",
-                    "transform": "scale(1.3) translate3d("+0+"px,"+newX+"px,0)"
+                    "transform": "scale(1.3) translate3d("+newX+"px,"+0+"px,0)"
                  });
 			}
 
