@@ -93,9 +93,9 @@
 				}
                  el.find("> .ibg-bg").css({
                    "-webkit-transform": "scale(1.3) translate3d("+move+"px,"+0+"px,0)",
-                    "transform": "scale(1.3) translate3d("+move+"px,"+0+"px,0)",
-					"-webkit-transition-duration": duration+"s",
-					"transition-duration":duration+"s"
+                    "transform": "scale(1.3) translate3d("+move+"px,"+0+"px,0)"
+					// ,"-webkit-transition-duration": duration+"s",
+					// "transition-duration":duration+"s"
                  });
 			}
 
