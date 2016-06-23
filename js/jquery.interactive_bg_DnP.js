@@ -85,9 +85,12 @@
 		  
 			function deviceMotionHandler(eventData) {
 				var gamma = event.gamma;
+				var move = gamma;
+				if(move>50){move=50}
+				if(move<-50){move=-50}
                  el.find("> .ibg-bg").css({
-                   "-webkit-transform": "scale(1.3) translate3d("+gamma * 2+"px,"+0+"px,0)",
-                    "transform": "scale(1.3) translate3d("+gamma * 2+"px,"+0+"px,0)"
+                   "-webkit-transform": "scale(1.3) translate3d("+move+"px,"+0+"px,0)",
+                    "transform": "scale(1.3) translate3d("+move+"px,"+0+"px,0)"
                  });
 			}
 
