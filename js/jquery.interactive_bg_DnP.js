@@ -85,14 +85,17 @@
 		  
 			function deviceMotionHandler(eventData) {
 				var gamma = event.alpha;
-				var move = gamma;
+				var move = gamma, duration = 0.5;;
 				if(move>50){move=50}
 				if(move<-50){move=-50}
+				if(gamma>50 || gamma < -50){
+					duration = 1;
+				}
                  el.find("> .ibg-bg").css({
-                   "-webkit-transform": "scale(1.3) translate3d("+0+"px,"+move+"px,0)",
-                    "transform": "scale(1.3) translate3d("+0+"px,"+move+"px,0)",
-					"-webkit-transition-duration": "1s",
-    "transition-duration":"1s",
+                   "-webkit-transform": "scale(1.3) translate3d("+move+"px,"+0+"px,0)",
+                    "transform": "scale(1.3) translate3d("+move+"px,"+0+"px,0)",
+					"-webkit-transition-duration": duration+"s",
+					"transition-duration":duration+"s"
                  });
 			}
 
