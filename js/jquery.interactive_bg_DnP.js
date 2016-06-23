@@ -33,8 +33,8 @@
           sh = settings.strength / h,
           sw = settings.strength / w,
           has_touch = 'ontouchstart' in document.documentElement;
-      var limitX = w*(settings.scale-1);
-      var limitY = h*(settings.scale-1);
+      var limitX = w*(settings.scale-1)/2;
+      var limitY = h*(settings.scale-1)/2;
 
       if (settings.contain == true) {
         el.css({
