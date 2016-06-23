@@ -84,7 +84,7 @@
 			// }
 		  
 			function deviceMotionHandler(eventData) {
-				var gamma = event.gamma;
+				var gamma = event.alpha;
 				var move = gamma;
 				if(move>50){move=50}
 				if(move<-50){move=-50}
