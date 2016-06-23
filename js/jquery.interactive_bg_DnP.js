@@ -88,17 +88,15 @@
   			function deviceMotionHandler(eventData) {
           var newX = event.gamma;
           var newY = event.beta;
-          newX = Math.max(newX, -limitX);
-          newX = Math.min(newX, limitX);
-          newY = Math.max(newY, -limitY);
-          newY = Math.min(newY, limitY);
 
-          el.find("> .ibg-bg").css({
-            "-webkit-transform": "scale("+settings.scale+") translate3d("+newX+"px,"+newY+"px,0)",
-            "-o-transform": "scale("+settings.scale+") translate3d("+newX+"px,"+newY+"px,0)",
-            "-moz-transform": "scale("+settings.scale+") translate3d("+newX+"px,"+newY+"px,0)",
-            "transform": "scale("+settings.scale+") translate3d("+newX+"px,"+newY+"px,0)"
-          });
+          if (-limitX <= newX && newX <= limitX && -limitY <= newY && newY <= limitY) {
+            el.find("> .ibg-bg").css({
+              "-webkit-transform": "scale("+settings.scale+") translate3d("+newX+"px,"+newY+"px,0)",
+              "-o-transform": "scale("+settings.scale+") translate3d("+newX+"px,"+newY+"px,0)",
+              "-moz-transform": "scale("+settings.scale+") translate3d("+newX+"px,"+newY+"px,0)",
+              "transform": "scale("+settings.scale+") translate3d("+newX+"px,"+newY+"px,0)"
+            });
+          }
   			}
 
       } else {
@@ -117,8 +115,8 @@
           // newX = Math.min(newX, limitX);
           // newY = Math.max(newY, -limitY);
           // newY = Math.min(newY, limitY);
-          if (settings.scale != 1) el.addClass("ibg-entering")
-          if (-limitX <= newX && newX <= limitX && -limitY <= newY && newY <= limitY)
+          if (settings.scale != 1) el.addClass("ibg-entering");
+          if (-limitX <= newX && newX <= limitX && -limitY <= newY && newY <= limitY) {
             el.find("> .ibg-bg").css({
               "-webkit-transform": "scale("+settings.scale+") translate3d("+newX+"px,"+newY+"px,0)",
               "-o-transform": "scale("+settings.scale+") translate3d("+newX+"px,"+newY+"px,0)",
@@ -129,49 +127,46 @@
               "-o-transition": "-o-transform " + settings.animationSpeed + " linear",
               "transition": "transform " + settings.animationSpeed + " linear"
             }).on("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function(){
-
               // This will signal the mousemove below to execute when the scaling animation stops
               el.removeClass("ibg-entering")
             });
+          }
         }).mousemove(function(e){
-          // Calc new X, Y
-          var pageX = e.pageX || e.clientX,
-              pageY = e.pageY || e.clientY,
-              pageX = (pageX - el.offset().left) - (w / 2),
-              pageY = (pageY - el.offset().top) - (h / 2),
-              newX = ((sw * pageX)) * - 1,
-              newY = ((sh * pageY)) * - 1;
-          newX = Math.max(newX, -limitX);
-          newX = Math.min(newX, limitX);
-          newY = Math.max(newY, -limitY);
-          newY = Math.min(newY, limitY);
-              //alert(newX + ' - ' + newY);
           // This condition prevents transition from causing the movement of the background to lag
           if (!el.hasClass("ibg-entering") && !el.hasClass("exiting")) {
-            // Use matrix to move the background from its origin
+            // Calc new X, Y
+            var pageX = e.pageX || e.clientX,
+                pageY = e.pageY || e.clientY,
+                pageX = (pageX - el.offset().left) - (w / 2),
+                pageY = (pageY - el.offset().top) - (h / 2),
+                newX = ((sw * pageX)) * - 1,
+                newY = ((sh * pageY)) * - 1;
+            // Use translate3d to move the background from its origin
             // Also, disable transition to prevent lag
-            el.find("> .ibg-bg").css({
-              "-webkit-transform": "scale("+settings.scale+") translate3d("+newX+"px,"+newY+"px,0)",
-              "-o-transform": "scale("+settings.scale+") translate3d("+newX+"px,"+newY+"px,0)",
-              "-moz-transform": "scale("+settings.scale+") translate3d("+newX+"px,"+newY+"px,0)",
-              "transform": "scale("+settings.scale+") translate3d("+newX+"px,"+newY+"px,0)",
-              "-webkit-transition": "none",
-              "-moz-transition": "none",
-              "-o-transition": "none",
-              "transition": "none"
-            });
+            if (-limitX <= newX && newX <= limitX && -limitY <= newY && newY <= limitY) {
+              el.find("> .ibg-bg").css({
+                "-webkit-transform": "scale("+settings.scale+") translate3d("+newX+"px,"+newY+"px,0)",
+                "-o-transform": "scale("+settings.scale+") translate3d("+newX+"px,"+newY+"px,0)",
+                "-moz-transform": "scale("+settings.scale+") translate3d("+newX+"px,"+newY+"px,0)",
+                "transform": "scale("+settings.scale+") translate3d("+newX+"px,"+newY+"px,0)",
+                "-webkit-transition": "none",
+                "-moz-transition": "none",
+                "-o-transition": "none",
+                "transition": "none"
+              });
+            }
           }
         }).mouseleave(function(e) {
           if (settings.scale != 1) el.addClass("ibg-exiting")
-          // Same condition applies as mouseenter. Rescale the background back to its original scale
-          el.addClass("ibg-exiting").find("> .ibg-bg").css({
-            "-webkit-transition": "-webkit-transform " + settings.animationSpeed + " linear",
-            "-moz-transition": "-moz-transform " + settings.animationSpeed + " linear",
-            "-o-transition": "-o-transform " + settings.animationSpeed + " linear",
-            "transition": "transform " + settings.animationSpeed + " linear"
-          }).on("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function(){
-            el.removeClass("ibg-exiting")
-          });
+            // Same condition applies as mouseenter. Rescale the background back to its original scale
+            el.addClass("ibg-exiting").find("> .ibg-bg").css({
+              "-webkit-transition": "-webkit-transform " + settings.animationSpeed + " linear",
+              "-moz-transition": "-moz-transform " + settings.animationSpeed + " linear",
+              "-o-transition": "-o-transform " + settings.animationSpeed + " linear",
+              "transition": "transform " + settings.animationSpeed + " linear"
+            }).on("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function(){
+              el.removeClass("ibg-exiting")
+            });
         });
       }
     });
