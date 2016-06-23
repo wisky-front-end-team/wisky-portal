@@ -45,7 +45,7 @@
       // Insert new container so that the background can be contained when scaled.
 
       if (settings.wrapContent == false) {
-        el.prepend("<div class='ibg-bg'></div>")
+        el.prepend("<div class='ibg-bg'>"+el.data("ibg-bg")+"</div>")
       } else {
         el.wrapInner("<div class='ibg-bg'></div>")
       }
@@ -53,10 +53,11 @@
       // Set background to the newly added container. no-repeat center center
 
       if (el.data("ibg-bg") !== undefined) {
-        el.find("> .ibg-bg").css({
-          background: "url('" + el.data("ibg-bg") + "') no-repeat center center",
-          "background-size": "cover",
-        });
+        // el.find("> .ibg-bg").css({
+        //   background: "url('" + el.data("ibg-bg") + "') no-repeat center center",
+        //   "background-size": "cover",
+        // });
+        //el.find("> .ibg-bg").prepend(el.data("ibg-bg"));
       }
 
       el.find("> .ibg-bg").css({
