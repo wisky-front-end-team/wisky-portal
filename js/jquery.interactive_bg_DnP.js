@@ -64,40 +64,32 @@
       if(has_touch || screen.width <= 699) {
         // For Mobile
         // Add support for accelerometeron mobile
-        window.addEventListener('devicemotion', deviceMotionHandler, false);
+        // window.addEventListener('devicemotion', deviceMotionHandler, false);
+		window.addEventListener("deviceorientation", deviceMotionHandler, true);
 
-			function deviceMotionHandler(eventData) {
-				var accX = Math.round(event.accelerationIncludingGravity.x*10) / 10,
-					 accY = Math.round(event.accelerationIncludingGravity.y*10) / 10,
-					 xA = -(accX / 10) * settings.strength,
-					 yA = -(accY / 10) * settings.strength,
-					 newX = -(xA*2),
-					 newY = -(yA*2);
-
-                el.find("> .ibg-bg").css({
-                   "-webkit-transform": "scale(1.3) translate3d("+newX+"px,"+0+"px,0)",
-                   "-moz-transform": "scale(1.3) translate3d("+newX+"px,"+0+"px,0)",
-                   "-o-transform": "scale(1.3) translate3d("+newX+"px,"+0+"px,0)",
-                    "transform": "scale(1.3) translate3d("+newX+"px,"+0+"px,0)"
-                });
-			}
-		  
 			// function deviceMotionHandler(eventData) {
-				// //var accX = event.acceleratonIncludingGravity.x,
-				// //accX = event.acceleration.x,
-				// accX = event.rotationRate.alpha;
-				// //var accX = Math.round(event.acceleration.x*10) / 10,
-                 // xA = -(accX / 10) * 10,
-                 // newX = -(xA*2);
-                 
+				// var accX = Math.round(event.accelerationIncludingGravity.x*10) / 10,
+					 // accY = Math.round(event.accelerationIncludingGravity.y*10) / 10,
+					 // xA = -(accX / 10) * settings.strength,
+					 // yA = -(accY / 10) * settings.strength,
+					 // newX = -(xA*2),
+					 // newY = -(yA*2);
 
-                 // el.find("> .ibg-bg").css({
+                // el.find("> .ibg-bg").css({
                    // "-webkit-transform": "scale(1.3) translate3d("+newX+"px,"+0+"px,0)",
                    // "-moz-transform": "scale(1.3) translate3d("+newX+"px,"+0+"px,0)",
                    // "-o-transform": "scale(1.3) translate3d("+newX+"px,"+0+"px,0)",
                     // "transform": "scale(1.3) translate3d("+newX+"px,"+0+"px,0)"
-                 // });
+                // });
 			// }
+		  
+			function deviceMotionHandler(eventData) {
+				var gamma = event.gamma;
+                 el.find("> .ibg-bg").css({
+                   "-webkit-transform": "scale(1.3) translate3d("+gamma * 2+"px,"+0+"px,0)",
+                    "transform": "scale(1.3) translate3d("+gamma * 2+"px,"+0+"px,0)"
+                 });
+			}
 
       } else {
         // For Desktop
