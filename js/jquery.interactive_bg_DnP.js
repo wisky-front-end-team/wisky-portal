@@ -18,7 +18,7 @@
   // Init params
   var defaults = {
     strength: 100,
-    scale: 2.0,
+    scale: 1.8,
     animationSpeed: "100ms",
     contain: true,
     wrapContent: false
