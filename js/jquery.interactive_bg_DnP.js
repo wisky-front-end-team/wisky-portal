@@ -33,8 +33,9 @@
           sh = settings.strength / h,
           sw = settings.strength / w,
           has_touch = 'ontouchstart' in document.documentElement;
-      var limitX = w*(settings.scale-1)/2;
-      var limitY = h*(settings.scale-1)/2;
+      var limitX = w*(settings.scale-1)*0.25;
+      var limitY = h*(settings.scale-1)*0.25;
+      //alert(limitX + ' - ' + limitY);
 
       if (settings.contain == true) {
         el.css({
@@ -88,22 +89,23 @@
   			function deviceMotionHandler(eventData) {
           var newX = event.gamma;
           var newY = event.beta;
+          newX = Math.max(newX, -limitX);
+          newX = Math.min(newX, limitX);
+          newY = Math.max(newY, -limitY);
+          newY = Math.min(newY, limitY);
 
-          if (-limitX <= newX && newX <= limitX && -limitY <= newY && newY <= limitY) {
-            el.find("> .ibg-bg").css({
-              "-webkit-transform": "scale("+settings.scale+") translate3d("+newX+"px,"+newY+"px,0)",
-              "-o-transform": "scale("+settings.scale+") translate3d("+newX+"px,"+newY+"px,0)",
-              "-moz-transform": "scale("+settings.scale+") translate3d("+newX+"px,"+newY+"px,0)",
-              "transform": "scale("+settings.scale+") translate3d("+newX+"px,"+newY+"px,0)"
-            });
-          }
+          el.find("> .ibg-bg").css({
+            "-webkit-transform": "scale("+settings.scale+") translate3d("+newX+"px,"+newY+"px,0)",
+            "-o-transform": "scale("+settings.scale+") translate3d("+newX+"px,"+newY+"px,0)",
+            "-moz-transform": "scale("+settings.scale+") translate3d("+newX+"px,"+newY+"px,0)",
+            "transform": "scale("+settings.scale+") translate3d("+newX+"px,"+newY+"px,0)"
+          });
   			}
 
       } else {
         // For Desktop
         // Animate only scaling when mouse enter
         el.mouseenter(function(e) {
-
           // Calc new X, Y
           var pageX = e.pageX || e.clientX,
               pageY = e.pageY || e.clientY,
@@ -111,12 +113,12 @@
               pageY = (pageY - el.offset().top) - (h / 2),
               newX = ((sw * pageX)) * - 1,
               newY = ((sh * pageY)) * - 1;
-          // newX = Math.max(newX, -limitX);
-          // newX = Math.min(newX, limitX);
-          // newY = Math.max(newY, -limitY);
-          // newY = Math.min(newY, limitY);
+          newX = Math.max(newX, -limitX);
+          newX = Math.min(newX, limitX);
+          newY = Math.max(newY, -limitY);
+          newY = Math.min(newY, limitY);
           if (settings.scale != 1) el.addClass("ibg-entering");
-          if (-limitX <= newX && newX <= limitX && -limitY <= newY && newY <= limitY) {
+          // if (-limitX <= newX && newX <= limitX && -limitY <= newY && newY <= limitY) {
             el.find("> .ibg-bg").css({
               "-webkit-transform": "scale("+settings.scale+") translate3d("+newX+"px,"+newY+"px,0)",
               "-o-transform": "scale("+settings.scale+") translate3d("+newX+"px,"+newY+"px,0)",
@@ -130,7 +132,6 @@
               // This will signal the mousemove below to execute when the scaling animation stops
               el.removeClass("ibg-entering")
             });
-          }
         }).mousemove(function(e){
           // This condition prevents transition from causing the movement of the background to lag
           if (!el.hasClass("ibg-entering") && !el.hasClass("exiting")) {
@@ -141,9 +142,13 @@
                 pageY = (pageY - el.offset().top) - (h / 2),
                 newX = ((sw * pageX)) * - 1,
                 newY = ((sh * pageY)) * - 1;
+            newX = Math.max(newX, -limitX);
+            newX = Math.min(newX, limitX);
+            newY = Math.max(newY, -limitY);
+            newY = Math.min(newY, limitY);
             // Use translate3d to move the background from its origin
             // Also, disable transition to prevent lag
-            if (-limitX <= newX && newX <= limitX && -limitY <= newY && newY <= limitY) {
+            // if (0-limitX <= newX && newX <= limitX && 0-limitY <= newY && newY <= limitY) {
               el.find("> .ibg-bg").css({
                 "-webkit-transform": "scale("+settings.scale+") translate3d("+newX+"px,"+newY+"px,0)",
                 "-o-transform": "scale("+settings.scale+") translate3d("+newX+"px,"+newY+"px,0)",
@@ -154,7 +159,6 @@
                 "-o-transition": "none",
                 "transition": "none"
               });
-            }
           }
         }).mouseleave(function(e) {
           if (settings.scale != 1) el.addClass("ibg-exiting")
