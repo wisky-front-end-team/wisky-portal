@@ -33,6 +33,8 @@
           sh = settings.strength / h,
           sw = settings.strength / w,
           has_touch = 'ontouchstart' in document.documentElement;
+      var limitX = w*(settings.scale-1);
+      var limitY = h*(settings.scale-1);
 
       if (settings.contain == true) {
         el.css({
@@ -84,15 +86,18 @@
 			// }
 
 			function deviceMotionHandler(eventData) {
-  			var gamma = event.alpha;
-  			var move = gamma;
-  			if(move>w*(settings.scale-1)) {move=50}
-  			if(move<-w*(settings.scale-1)) {move=-49}
+        var newX = event.gamma;
+        var newY = event.beta;
+        newX = Math.max(newX, -limitX);
+        newX = Math.min(newX, limitX);
+        newY = Math.max(newY, -limitY);
+        newY = Math.min(newY, limitY);
+
         el.find("> .ibg-bg").css({
-          "-webkit-transform": "scale(1.3) translate3d("+0+"px,"+move+"px,0)",
-          "-o-transform": "scale(1.3) translate3d("+0+"px,"+move+"px,0)",
-          "-moz-transform": "scale(1.3) translate3d("+0+"px,"+move+"px,0)",
-          "transform": "scale(1.3) translate3d("+0+"px,"+move+"px,0)"
+          "-webkit-transform": "scale(1.3) translate3d("+newX+"px,"+newY+"px,0)",
+          "-o-transform": "scale(1.3) translate3d("+newX+"px,"+newY+"px,0)",
+          "-moz-transform": "scale(1.3) translate3d("+newX+"px,"+newY+"px,0)",
+          "transform": "scale(1.3) translate3d("+newX+"px,"+newY+"px,0)"
         });
 			}
 
@@ -108,8 +113,15 @@
               pageY = (pageY - el.offset().top) - (h / 2),
               newX = ((sw * pageX)) * - 1,
               newY = ((sh * pageY)) * - 1;
+          newX = Math.max(newX, -limitX);
+          newX = Math.min(newX, limitX);
+          newY = Math.max(newY, -limitY);
+          newY = Math.min(newY, limitY);
           if (settings.scale != 1) el.addClass("ibg-entering")
           el.find("> .ibg-bg").css({
+            "-webkit-transform": "scale(1.3) translate3d("+newX+"px,"+newY+"px,0)",
+            "-o-transform": "scale(1.3) translate3d("+newX+"px,"+newY+"px,0)",
+            "-moz-transform": "scale(1.3) translate3d("+newX+"px,"+newY+"px,0)",
             "transform": "scale(1.3) translate3d("+newX+"px,"+newY+"px,0)",
             "-webkit-transition": "-webkit-transform " + settings.animationSpeed + " linear",
             "-moz-transition": "-moz-transform " + settings.animationSpeed + " linear",
@@ -128,13 +140,20 @@
               pageY = (pageY - el.offset().top) - (h / 2),
               newX = ((sw * pageX)) * - 1,
               newY = ((sh * pageY)) * - 1;
+          newX = Math.max(newX, -limitX);
+          newX = Math.min(newX, limitX);
+          newY = Math.max(newY, -limitY);
+          newY = Math.min(newY, limitY);
               //alert(newX + ' - ' + newY);
           // This condition prevents transition from causing the movement of the background to lag
           if (!el.hasClass("ibg-entering") && !el.hasClass("exiting")) {
             // Use matrix to move the background from its origin
             // Also, disable transition to prevent lag
             el.find("> .ibg-bg").css({
-            "transform": "scale(1.3) translate3d("+newX+"px,"+newY+"px,0)",
+              "-webkit-transform": "scale(1.3) translate3d("+newX+"px,"+newY+"px,0)",
+              "-o-transform": "scale(1.3) translate3d("+newX+"px,"+newY+"px,0)",
+              "-moz-transform": "scale(1.3) translate3d("+newX+"px,"+newY+"px,0)",
+              "transform": "scale(1.3) translate3d("+newX+"px,"+newY+"px,0)",
               "-webkit-transition": "none",
               "-moz-transition": "none",
               "-o-transition": "none",
@@ -142,13 +161,6 @@
             });
           }
         }).mouseleave(function(e) {
-          // Calc new X, Y
-          var pageX = e.pageX || e.clientX,
-              pageY = e.pageY || e.clientY,
-              pageX = (pageX - el.offset().left) - (w / 2),
-              pageY = (pageY - el.offset().top) - (h / 2),
-              newX = ((sw * pageX)) * - 1,
-              newY = ((sh * pageY)) * - 1;
           if (settings.scale != 1) el.addClass("ibg-exiting")
           // Same condition applies as mouseenter. Rescale the background back to its original scale
           el.addClass("ibg-exiting").find("> .ibg-bg").css({
