@@ -75,9 +75,9 @@
                  newY = -(yA*2);
 
                  el.find("> .ibg-bg").css({
-                   "-webkit-transform": "matrix(" + settings.scale + ",0,0," + settings.scale + "," + newX + "," + newY + ")",
-                   "-moz-transform": "matrix(" + settings.scale + ",0,0," + settings.scale + "," + newX + "," + newY + ")",
-                   "-o-transform": "matrix(" + settings.scale + ",0,0," + settings.scale + "," + newX + "," + newY + ")",
+                   "-webkit-transform": "scale(1.3) translate3d("+newX+"px,"+0+"px,0)",
+                   "-moz-transform": "scale(1.3) translate3d("+newX+"px,"+0+"px,0)",
+                   "-o-transform": "scale(1.3) translate3d("+newX+"px,"+0+"px,0)",
                     "transform": "scale(1.3) translate3d("+newX+"px,"+0+"px,0)"
                  });
           }
