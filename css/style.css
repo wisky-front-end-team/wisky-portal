@@ -1,29 +1,10 @@
-﻿/* MODIFY BOOTSTRAP */
-.btn-danger {
-	background: #c9302c;
-}
-.btn-info {
-	background: #31b0d5;
-}
-.btn-success {
-	background: #449d44;
-}
-.btn-danger:hover {
-	background: #d9534f;
-}
-.btn-info:hover {
-	background: #5bc0de;
-}
-.btn-success:hover {
-	background: #5cb85c;
-}
-
-/* GENERALS */
+﻿/* GENERALS */
 .clear-fix {
 	clear: both;
 }
 
 .top-bar {
+	background: rgba(255,255,255,0.6);
 	position: fixed;
 	z-index: 1;
 }
@@ -47,6 +28,26 @@
 	vertical-align: middle;
 	height: 100%;
 	position: static;
+}
+
+/* BUTTONS */
+.btn-google {
+	background: rgb(234, 67, 53);
+}
+.btn-google:hover {
+	background: rgb(239, 85, 73);
+}
+.btn-facebook {
+	background: #3b5998;
+}
+.btn-facebook:hover {
+	background: #8b9dc3;
+}
+.btn-continue {
+	background: rgb(67, 136, 69);
+}
+.btn-continue:hover {
+	background: rgb(82, 160, 84);
 }
 
 /* HEADER */
@@ -84,6 +85,10 @@
 	border-radius: 4px;
 	transition: .5s;
 	text-decoration:none;
+}
+
+.header input {
+	margin-top: 5px;
 }
 
 .wrapper.bg {
