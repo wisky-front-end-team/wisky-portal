@@ -141,12 +141,12 @@ pre code {
   font-family: Open Sans;
   font-weight: bold;
   -webkit-box-shadow: none;
-  box-shadow: none;
+  box-shadow: none;/*
   background-color: #4D90FE;
   background-image: -webkit-linear-gradient(top,#4D90FE,#4787ED);
   background-image: -webkit-moz-gradient(top,#4D90FE,#4787ED);
   background-image: linear-gradient(top,#4d90fe,#4787ed);
-  border: 1px solid #3079ED;
+  border: 1px solid #3079ED;*/
   color: #FFF;
 }
 .reload:hover{
@@ -156,19 +156,19 @@ pre code {
   width: 200px;
   -webkit-box-shadow: none;
   box-shadow: none;
-  background-color: #4D90FE;
+  /*background-color: #4D90FE;
   background-image: -webkit-linear-gradient(top,#4D90FE,#4787ED);
   background-image: -moz-linear-gradient(top,#4D90FE,#4787ED);
   background-image: linear-gradient(top,#4d90fe,#4787ed);
-  border: 1px solid #3079ED;
+  border: 1px solid #3079ED;*/
   color: #FFF;
 }
 .clear {
   width: auto;
 }
-.btn:hover, .btn:hover {
+/*.btn:hover, .btn:hover {
   background: #317af2;
-}
+}*/
 .btns {
   float: left;
   width: 100%;

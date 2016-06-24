@@ -1,4 +1,25 @@
-﻿.clear-fix {
+﻿/* MODIFY BOOTSTRAP */
+.btn-danger {
+	background: #c9302c;
+}
+.btn-info {
+	background: #31b0d5;
+}
+.btn-success {
+	background: #449d44;
+}
+.btn-danger:hover {
+	background: #d9534f;
+}
+.btn-info:hover {
+	background: #5bc0de;
+}
+.btn-success:hover {
+	background: #5cb85c;
+}
+
+/* GENERALS */
+.clear-fix {
 	clear: both;
 }
 
@@ -13,7 +34,7 @@
 
 .main {
 	position: absolute;
-	height: 80%;
+	height: 90%;
 	z-index: 10;
 }
 .center-align-wrapper {
@@ -28,6 +49,7 @@
 	position: static;
 }
 
+/* HEADER */
 .header {
 	margin: 0 auto;
 	padding-left: 15px;
@@ -46,27 +68,22 @@
 	padding: 15px 10px 10px;
 	margin: 10px auto 0;
 	border-radius:4px;
-	max-width: 500px;
+	max-width: 350px;
 }
 
-.header .btn-continue {
+.header .btn {
 	display: block;
-	font-size: 28px;
+	font-size: 18px;
 	line-height: 28px;
 	font-weight: bold;
-	padding: 10px 0;
+	padding: 8px 0;
 	margin-top: 10px;
 	text-align: center;
 	width: auto;
 	color: white;
-  background: #74bf04;
 	border-radius: 4px;
 	transition: .5s;
 	text-decoration:none;
-}
-
-.header .btn-continue:hover {
-	background-color: #68ab04;
 }
 
 .wrapper.bg {
@@ -91,6 +108,7 @@
   background: linear-gradient(transparent, black); /* Standard syntax */
 }
 
+/* DOCS: Term & Conditions */
 .docs {
 	color: #888;
 	z-index: 100;
