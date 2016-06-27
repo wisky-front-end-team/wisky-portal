@@ -15,6 +15,7 @@
 
 .main {
 	position: absolute;
+	top: 100%;
 	height: 90%;
 	z-index: 10;
 }
@@ -94,7 +95,7 @@
 .wrapper.bg {
 	position: relative;
 }
-.wrapper.bg::after {
+.dark-after::after {
 	display: block;
 	content: "";
 	position: absolute;
@@ -177,4 +178,40 @@ ul.docs-body li {
 	ul.docs-nav li {
 		max-width: 130px;
 	}
+}
+
+/* SURVEY */
+.survey {
+	height: 100%;
+}
+
+.survey-content {
+	position: absolute;
+	height: auto;
+	width: 100%;
+	bottom: 25px;
+	color: white;
+}
+.survey-content h3,
+.survey-content p {
+	margin: 0;
+  text-shadow: 1px 1px 4px rgba(0,0,0,.85);
+}
+.survey .choices {
+	text-align: center;
+	background: rgba(0,0,0,0.5);
+	max-width: 500px;
+	border-radius: 4px;
+	margin: 20px auto 0;
+	padding: 15px;
+}
+.survey .choices .item {
+	display: inline-block;
+	font-size: 30px;
+}
+.survey .choices .item:hover {
+	cursor: pointer;
+}
+.survey .choices .item:not(:last-child) {
+	margin-right: 3%;
 }
