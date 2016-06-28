@@ -215,3 +215,58 @@ ul.docs-body li {
 .survey .choices .item:not(:last-child) {
 	margin-right: 3%;
 }
+
+/* Portal Page 2: .portal-2 */
+.portal-2 h3 {
+	color: white;
+	font-size: 18px;
+  text-shadow: 1px 1px 4px rgba(0,0,0,.85);
+  margin-bottom: 15px;
+}
+.portal-2.main {
+	height: 100%;
+}
+.portal-2 .center-align-box {
+	vertical-align: bottom;
+}
+.portal-2 .content {
+	position: relative;
+	top: 61px;
+}
+.portal-2 .btn {
+	margin: 0 auto;
+	font-size: 18px;
+	border-radius: 4px;
+}
+.portal-2 .btn-orange {
+	background: rgb(245, 155, 0);
+	padding: 10px;
+	margin-bottom: 7px;
+}
+.portal-2 .btn-connect {
+	background-color: transparent;
+	border: solid 1px white;
+	padding: 10px;
+	/*font-size: 20px;*/
+	font-weight: normal;
+	margin-bottom: 7px;
+	display: inline-block;
+	transition: all 0.2s ease;
+}
+.portal-2 .btn-connect:hover {
+	background-color: white;
+	color: black;
+}
+@media screen and (min-width: 768px) {
+	.portal-2 h3 {
+		font-size: 32px;
+		font-weight: bold;
+	}
+	.portal-2 .btn-orange {
+		font-size: 28px;
+		padding: 15px 85px;
+	}
+	.portal-2 .btn-connect {
+		font-size: 20px;
+	}
+}
