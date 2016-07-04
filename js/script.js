@@ -4,8 +4,6 @@
  * =========================================================== */
 
 $(document).ready(function(){
-  // Set up interactive background
-  $(".bg").interactive_bg();
 
   // Move up animation on load
   $('.move-up').animate({
