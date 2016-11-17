@@ -52,6 +52,7 @@ $(window).resize(function() {
 
 // Set up Ready To Connect counter
 $(document).ready(function() {
+  $('.portal-2 .content').fadeOut();
   $('.timeout').html('10');
   $('.ready-counter').each(function() {
     var el = $(this);
@@ -69,9 +70,10 @@ $(document).ready(function() {
         } else {
           clearInterval(interval);
           // show Connect button
-          $('.portal-2 .content').animate({
-            top: "0"
-          }, 500);
+          // $('.portal-2 .content').animate({
+          //   top: "0"
+          // }, 500);
+          $('.portal-2 .content').fadeIn();
           el.html('Kết nối của bạn đã sẵn sàng');
         }
       });

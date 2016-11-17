@@ -23,7 +23,7 @@
     </div>
 
   </div>
-  <div class="wrapper bg dark-after" data-ibg-bg="images/vegas.jpg">
+  <div class="wrapper bg interactive dark-after" data-ibg-bg="images/vegas.jpg">
 
 
     <div class="main move-up portal-2">
@@ -46,58 +46,8 @@
 
   <script type="text/javascript" src="js/jquery-1.12.1.min.js"></script>
   <script type="text/javascript" src="js/bootstrap.js"></script>
-  <script type="text/javascript" src="plugins/page-redirect/js/page-redirect.js"></script>
   <script type="text/javascript" src="js/jquery.interactive_bg_DnP.js"></script>
-  <script>
-    $(document).ready(function(){
-      $(".bg").interactive_bg();
-
-      // Move up on load animation
-      $('.move-up').animate({
-        top: "0"
-      }, 500);
-
-    });
-
-    $(window).resize(function() {
-      $(".wrapper > .ibg-bg").css({
-        width: $(window).outerWidth(),
-        height: $(window).outerHeight()
-      })
-    })
-
-    $(document).ready(function() {
-      $('.timeout').html('10');
-      $('.ready-counter').each(function() {
-        var el = $(this);
-        var timeOut = parseInt(el.data("timeout"));
-        var target = el.data("target");
-        var spanTimeout = el.find('.timeout');
-
-        spanTimeout.html(timeOut);
-        // Function to update counters on all elements with class counter
-        var doUpdate = function() {
-          spanTimeout.each(function() {
-            var count = parseInt($(this).html());
-            if (count !== 0) {
-              $(this).html(count - 1);
-            } else {
-              clearInterval(interval);
-              // show Connect button
-              $('.portal-2 .content').animate({
-                top: "0"
-              }, 500);
-              el.html('Kết nối của bạn đã sẵn sàng');
-            }
-          });
-        };
-        // Schedule the update to happen once every second
-        var interval = setInterval(doUpdate, 1000);
-
-      });
-    });
-
-  </script>
+  <script type="text/javascript" src="js/script.js"></script>
 </body>
 </html>
 
