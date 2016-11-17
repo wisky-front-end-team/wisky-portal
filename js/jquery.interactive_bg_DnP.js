@@ -126,18 +126,22 @@
                 // }
 
                 function deviceMotionHandler(eventData) {
-                    var newX = event.gamma;
-                    var newY = event.beta;
-                    newX = Math.max(newX, -limitX);
-                    newX = Math.min(newX, limitX);
-                    newY = Math.max(newY, -limitY);
-                    newY = Math.min(newY, limitY);
+                    var gamma = event.gamma;
+                    var beta = event.beta;
+                    var XMouse = (gamma + 90) / 180; // value: 0..1
+                    var YMouse = (beta + 90) / 180; // value: 0..1
 
-                    el.find("> .ibg-bg").css({
-                        "-webkit-transform": "scale(" + settings.scale + ") translate3d(" + newX + "px," + newY + "px,0)",
-                        "-o-transform": "scale(" + settings.scale + ") translate3d(" + newX + "px," + newY + "px,0)",
-                        "-moz-transform": "scale(" + settings.scale + ") translate3d(" + newX + "px," + newY + "px,0)",
-                        "transform": "scale(" + settings.scale + ") translate3d(" + newX + "px," + newY + "px,0)"
+                    var XPicture = -XMouse;
+                    var YPicture = -YMouse;
+
+                    var newX = xPicture = XPicture * wRange;
+                    var newY = yPicture = YPicture * hRange;
+
+                    bg.css({
+                        "-webkit-transform": "translate3d(" + newX + "px," + newY + "px,0)",
+                        "-o-transform": "translate3d(" + newX + "px," + newY + "px,0)",
+                        "-moz-transform": "translate3d(" + newX + "px," + newY + "px,0)",
+                        "transform": "translate3d(" + newX + "px," + newY + "px,0)"
                     });
                 }
 
