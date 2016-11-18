@@ -96,6 +96,8 @@
 
                 function deviceMotionHandler(eventData) {
                     var gamma = event.gamma;
+                    if (gamma > 90) gamma = 180 - gamma;
+                    if (gamma < -90) gamma = -180 - gamma;
                     var beta = event.beta;
                     var XMouse = (gamma + 90) / 180; // value: 0..1
                     var YMouse = (beta + 90) / 180; // value: 0..1
