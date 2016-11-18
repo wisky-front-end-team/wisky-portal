@@ -95,7 +95,7 @@
                 window.addEventListener("deviceorientation", deviceMotionHandler, true);
 
                 function deviceMotionHandler(eventData) {
-                    var gamma = event.gamma;
+                    var gamma = -event.gamma;
                     if (gamma > 90) gamma = 180 - gamma;
                     if (gamma < -90) gamma = -180 - gamma;
                     var beta = event.beta;
