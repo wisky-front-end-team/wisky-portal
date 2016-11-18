@@ -21,7 +21,7 @@
     // Init params
     var defaults = {
         strength: 100,
-        scale: 1.2,
+        scale: 1.25,
         animationSpeed: "100ms",
         contain: true,
         wrapContent: false
@@ -34,39 +34,16 @@
             // 1.0- Init settings
             var settings = $.extend({}, defaults, options),
                 el = $(this), // the Screen: the view
-                hScreen = el.outerHeight(),
-                wScreen = el.outerWidth(),
-                // sh = settings.strength / h,
-                // sw = settings.strength / w,
                 has_touch = 'ontouchstart' in document.documentElement;
             var bg = el.find(".ibg-bg"); // Background Picture
+            var hScreen, wScreen, wFrame, hFrame, rFrame, wRange, hRange;
 
-            // 1.1- Get Picture's size
+            // 1.1- Get Picture's size and ratio (w/h)
             var wPicture = bg.width();
             var hPicture = bg.height();
-
-            // 1.2- Set Frame's size
-            var wFrame = settings.scale * wScreen;
-            var hFrame = settings.scale * hScreen;
-
-            // 1.3- Set Picture's size
             var rPicture = wPicture / hPicture; // Remember to check hP == 0
-            var rFrame = wFrame / hFrame;
-            if (rPicture > rFrame) {
-                hPicture = hFrame;
-                wPicture = rPicture * hPicture;
-            } else {
-                wPicture = wFrame;
-                hPicture = wPicture / rPicture;
-            }
-            bg.width(wPicture);
-            bg.height(hPicture);
-            
-            // 1.4- Set Range's size
-            var wRange = wPicture - wScreen;
-            var hRange = hPicture - hScreen;
 
-            // 1.5- Set transition
+            // 1.2- Set transition
             bg.css({
                 "-webkit-transition": "-webkit-transform " + settings.animationSpeed + " linear",
                 "-moz-transition": "-moz-transform " + settings.animationSpeed + " linear",
@@ -74,12 +51,41 @@
                 "transition": "transform " + settings.animationSpeed + " linear"
             });
 
-            // 1.6- Function: limit01(X). Ensure that: X, Y: 0..1
+            // 1.3- Function: limit01(X). Ensure that: X, Y: 0..1
             function limit01(X) {
                 if (X > 1.0) X = 1.0;
                 if (X < 0.0) X = 0.0;
                 return X;
             }
+
+            // 1.4- Dynamic Init: on document ready and window resize
+            function dynamicInit() {
+                // 1.4.1- Get Screen's size
+                hScreen = el.outerHeight();
+                wScreen = el.outerWidth();
+
+                // 1.4.2- Set Frame's size and ratio
+                wFrame = settings.scale * wScreen;
+                hFrame = settings.scale * hScreen;
+                rFrame = wFrame / hFrame;
+
+                // 1.4.3- Set Picture's size
+                if (rPicture > rFrame) {
+                    hPicture = hFrame;
+                    wPicture = rPicture * hPicture;
+                } else {
+                    wPicture = wFrame;
+                    hPicture = wPicture / rPicture;
+                }
+                bg.width(wPicture);
+                bg.height(hPicture);
+                
+                // 1.4.4- Set Range's size
+                wRange = wPicture - wScreen;
+                hRange = hPicture - hScreen;
+            }
+            dynamicInit();
+            $(window).resize(dynamicInit);
 
             // 2- BEHAVIORS
             if (has_touch || screen.width <= 699) {
@@ -182,12 +188,13 @@
 }(window.jQuery);
 
 // Set up
-$(document).ready(function () {
+$(document).ready( function () {
     $(".bg.interactive").interactive_bg();
     $(".bg.static").each(function () {
-        var image = $(this).data("ibg-bg");
-        $(this).css("background-image", "url(" + image + ")");
-        $(this).css("background-size", "100% 100%");
-        $(this).css("background-repeat", "no-repeat");
+        var img = $(this).find(".ibg-bg");
+        img.css({
+            "width": "100%",
+            "height": "100%"
+        });
     });
-});
+})
