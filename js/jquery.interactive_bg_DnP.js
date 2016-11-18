@@ -66,41 +66,20 @@
             var wRange = wPicture - wScreen;
             var hRange = hPicture - hScreen;
 
-            // var limitX = w * (settings.scale - 1) * 0.25;
-            // var limitY = h * (settings.scale - 1) * 0.25;
+            // 1.5- Set transition
+            bg.css({
+                "-webkit-transition": "-webkit-transform " + settings.animationSpeed + " linear",
+                "-moz-transition": "-moz-transform " + settings.animationSpeed + " linear",
+                "-o-transition": "-o-transform " + settings.animationSpeed + " linear",
+                "transition": "transform " + settings.animationSpeed + " linear"
+            });
 
-            // if (settings.contain == true) {
-            //     el.css({
-            //         overflow: "hidden"
-            //     });
-            // }
-            // Insert new container so that the background can be contained when scaled.
-
-            // if (settings.wrapContent == false) {
-            //     el.prepend("<div class='ibg-bg'></div>")
-            // } else {
-            //     el.wrapInner("<div class='ibg-bg'></div>")
-            // }
-
-            // Set background to the newly added container. no-repeat center center
-
-            // if (el.data("ibg-bg") !== undefined) {
-            //     el.find("> .ibg-bg").css({
-            //         background: "url('" + el.data("ibg-bg") + "')",
-            //         "background-size": "cover",
-            //         "background-repeat": "no-repeat"
-            //     });
-            //     //el.find("> .ibg-bg").prepend(el.data("ibg-bg"));
-            // }
-
-            // bg.css({
-            //     width: w,
-            //     height: h,
-            //     "-webkit-transform": "scale(" + settings.scale + ")",
-            //     "-o-transform": "scale(" + settings.scale + ")",
-            //     "-moz-transform": "scale(" + settings.scale + ")",
-            //     "transform": "scale(" + settings.scale + ")"
-            // })
+            // 1.6- Function: limit01(X). Ensure that: X, Y: 0..1
+            function limit01(X) {
+                if (X > 1.0) X = 1.0;
+                if (X < 0.0) X = 0.0;
+                return X;
+            }
 
             // 2- BEHAVIORS
             if (has_touch || screen.width <= 699) {
@@ -109,27 +88,13 @@
                 // window.addEventListener('devicemotion', deviceMotionHandler, false);
                 window.addEventListener("deviceorientation", deviceMotionHandler, true);
 
-                // function deviceMotionHandler(eventData) {
-                // var accX = Math.round(event.accelerationIncludingGravity.x*10) / 10,
-                // accY = Math.round(event.accelerationIncludingGravity.y*10) / 10,
-                // xA = -(accX / 10) * settings.strength,
-                // yA = -(accY / 10) * settings.strength,
-                // newX = -(xA*2),
-                // newY = -(yA*2);
-
-                // el.find("> .ibg-bg").css({
-                // "-webkit-transform": "scale("+settings.scale+") translate3d("+newX+"px,"+0+"px,0)",
-                // "-moz-transform": "scale("+settings.scale+") translate3d("+newX+"px,"+0+"px,0)",
-                // "-o-transform": "scale("+settings.scale+") translate3d("+newX+"px,"+0+"px,0)",
-                // "transform": "scale("+settings.scale+") translate3d("+newX+"px,"+0+"px,0)"
-                // });
-                // }
-
                 function deviceMotionHandler(eventData) {
                     var gamma = event.gamma;
                     var beta = event.beta;
                     var XMouse = (gamma + 90) / 180; // value: 0..1
                     var YMouse = (beta + 90) / 180; // value: 0..1
+                    XMouse = limit01(XMouse);
+                    YMouse = limit01(YMouse);
 
                     var XPicture = -XMouse;
                     var YPicture = -YMouse;
@@ -152,6 +117,8 @@
                     // 2.1.1- Calc new x, y
                     var xMouse = e.pageX || e.clientX;
                     var yMouse = e.pageY || e.clientY;
+                    XMouse = limit01(XMouse);
+                    YMouse = limit01(YMouse);
 
                     var XMouse = xMouse / wScreen; // value: 0..1
                     var YMouse = yMouse / hScreen; // value: 0..1
@@ -162,13 +129,6 @@
                     var newX = xPicture = XPicture * wRange;
                     var newY = yPicture = YPicture * hRange;
 
-                    // var pageX = e.pageX || e.clientX,
-                    //     pageY = e.pageY || e.clientY,
-                    //     pageX = (pageX - el.offset().left) - el.outerWidth() / 2,
-                    //     pageY = (pageY - el.offset().top) - el.outerHeight() / 2,
-                    //     newX = 0 - pageX * (settings.scale - 1) * (2 - settings.scale),
-                    //     newY = 0 - pageY * (settings.scale - 1) * (2 - settings.scale);
-
                     // 2.1.2- Set new x, y
                     if (settings.scale != 1) el.addClass("ibg-entering");
                     // if (-limitX <= newX && newX <= limitX && -limitY <= newY && newY <= limitY) {
@@ -176,11 +136,7 @@
                         "-webkit-transform": "translate3d(" + newX + "px," + newY + "px,0)",
                         "-o-transform": "translate3d(" + newX + "px," + newY + "px,0)",
                         "-moz-transform": "translate3d(" + newX + "px," + newY + "px,0)",
-                        "transform": "translate3d(" + newX + "px," + newY + "px,0)",
-                        "-webkit-transition": "-webkit-transform " + settings.animationSpeed + " linear",
-                        "-moz-transition": "-moz-transform " + settings.animationSpeed + " linear",
-                        "-o-transition": "-o-transform " + settings.animationSpeed + " linear",
-                        "transition": "transform " + settings.animationSpeed + " linear"
+                        "transform": "translate3d(" + newX + "px," + newY + "px,0)"
                     }).on("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function () {
                         // This will signal the mousemove below to execute when the scaling animation stops
                         el.removeClass("ibg-entering")
@@ -188,9 +144,11 @@
                 }).mousemove(function (e) {
                     // This condition prevents transition from causing the movement of the background to lag
                     if (!el.hasClass("ibg-entering") && !el.hasClass("exiting")) {
-                        // Calc new X, Y
+                        // 2.2.1- Calc new X, Y
                         var xMouse = e.pageX || e.clientX;
                         var yMouse = e.pageY || e.clientY;
+                        XMouse = limit01(XMouse);
+                        YMouse = limit01(YMouse);
 
                         var XMouse = xMouse / wScreen; // value: 0..1
                         var YMouse = yMouse / hScreen; // value: 0..1
@@ -200,34 +158,20 @@
 
                         var newX = xPicture = XPicture * wRange;
                         var newY = yPicture = YPicture * hRange;
-                        // var pageX = e.pageX || e.clientX,
-                        //     pageY = e.pageY || e.clientY,
-                        //     pageX = (pageX - el.offset().left) - el.outerWidth() / 2,
-                        //     pageY = (pageY - el.offset().top) - el.outerHeight() / 2,
-                        //     newX = 0 - pageX * (settings.scale - 1) * (2 - settings.scale),
-                        //     newY = 0 - pageY * (settings.scale - 1) * (2 - settings.scale);
-                                //console.log(pageX + ' - ' + newX);
 
+                        // 2.2.2- Set new X, Y
                         bg.css({
                             "-webkit-transform": "translate3d(" + newX + "px," + newY + "px,0)",
                             "-o-transform": "translate3d(" + newX + "px," + newY + "px,0)",
                             "-moz-transform": "translate3d(" + newX + "px," + newY + "px,0)",
-                            "transform": "translate3d(" + newX + "px," + newY + "px,0)",
-                            "-webkit-transition": "none",
-                            "-moz-transition": "none",
-                            "-o-transition": "none",
-                            "transition": "none"
+                            "transform": "translate3d(" + newX + "px," + newY + "px,0)"
                         });
                     }
                 }).mouseleave(function (e) {
                     if (settings.scale != 1) el.addClass("ibg-exiting")
                     // Same condition applies as mouseenter. Rescale the background back to its original scale
-                    el.addClass("ibg-exiting").find("> .ibg-bg").css({
-                        "-webkit-transition": "-webkit-transform " + settings.animationSpeed + " linear",
-                        "-moz-transition": "-moz-transform " + settings.animationSpeed + " linear",
-                        "-o-transition": "-o-transform " + settings.animationSpeed + " linear",
-                        "transition": "transform " + settings.animationSpeed + " linear"
-                    }).on("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function () {
+                    el.addClass("ibg-exiting");
+                    bg.on("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function () {
                         el.removeClass("ibg-exiting")
                     });
                 });
