@@ -21,8 +21,9 @@
     // Init params
     var defaults = {
         strength: 100,
-        scale: 1.25,
-        animationSpeed: "100ms",
+        scale: 1.05,
+        decreaseMouseRange: 0.3, // decrease mouse range, 0..0.5
+        animationSpeed: "200ms",
         contain: true,
         wrapContent: false
     };
@@ -87,6 +88,14 @@
             dynamicInit();
             $(window).resize(dynamicInit);
 
+            // 1.5- Re calculate X
+            function recalc(x) {
+            	var dec = settings.decreaseMouseRange;
+            	if (x <= dec) return 0;
+            	if (x >= 1 - dec) return 1;
+            	return 1.0*(x - dec)/(1 - 2*dec);
+            }
+
             // 2- BEHAVIORS
             if (has_touch || screen.width <= 699) {
                 //// FOR MOBILE
@@ -106,6 +115,9 @@
                     var YMouse = (beta + 90) / 180; // value: 0..1
                     XMouse = limit01(XMouse);
                     YMouse = limit01(YMouse);
+
+                    XMouse = recalc(XMouse);
+                    YMouse = recalc(YMouse);
 
                     var XPicture = -XMouse;
                     var YPicture = -YMouse;
@@ -133,6 +145,9 @@
 
                     var XMouse = xMouse / wScreen; // value: 0..1
                     var YMouse = yMouse / hScreen; // value: 0..1
+
+                    XMouse = recalc(XMouse);
+                    YMouse = recalc(YMouse);
 
                     var XPicture = -XMouse;
                     var YPicture = -YMouse;
@@ -163,6 +178,9 @@
 
                         var XMouse = xMouse / wScreen; // value: 0..1
                         var YMouse = yMouse / hScreen; // value: 0..1
+
+	                    XMouse = recalc(XMouse);
+	                    YMouse = recalc(YMouse);
 
                         var XPicture = -XMouse;
                         var YPicture = -YMouse;
