@@ -22,7 +22,7 @@
     var defaults = {
         strength: 100,
         scale: 1.05,
-        decreaseMouseRange: 0.3, // decrease mouse range, 0..0.5
+        decreaseMouseRange: 0.15, // decrease mouse range, 0..0.5
         animationSpeed: "200ms",
         contain: true,
         wrapContent: false

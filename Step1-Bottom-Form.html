@@ -24,7 +24,7 @@
   <link href='css/bootstrap.css' rel='stylesheet' type='text/css'>
   <link href='css/font-awesome.min.css' rel='stylesheet' type='text/css'>
   <link href='css/interactive_bg.css' rel='stylesheet' type='text/css'>
-  <link href='css/style.css' rel='stylesheet' type='text/css'>
+  <link href='css/style-bottom-form.css' rel='stylesheet' type='text/css'>
 
 </head>
 <body>
@@ -36,67 +36,43 @@
       <!-- <div class="page-redirect-counter" data-timeout="13" data-target="http://tinhte.vn" >
         Trang sẽ tự động chuyển sau <span class="timeout">3</span>s...
       </div> -->
-
     </div>
 
     <img class="ibg-bg" src="images/smart-train.jpg" width="auto" height="auto">
 
-    <div class="main move-up">
-      <div class="center-align-wrapper">
-        <div class="center-align-box header">
 
-          <img width="115px" class="logo" src="images/imgpsh_fullsize.png">
-          <h1>Pizza Antonio</h1>
-          <div class="clear-fix"></div>
-
-          <!-- Control Box 1: Google + Facebook + Continue -->
-          <div class="control-box">
-            <div>
-              <i>Start using free WiFi network</i>
-            </div>
-            <a class="btn btn-google" href='#'>
-              <i class="fa fa-google-plus"></i>
-              Google
-            </a>
-            <a class="btn btn-facebook" href='#'>
-              <i class="fa fa-facebook"></i>
-              Facebook
-            </a>
-            <a class="btn btn-continue" href='#'>
-              Continue to internet
-            </a>
+    <!-- Control Box 1: Google + Facebook + Continue -->
+    <div class="bottom-bar" id="bottom-bar">
+      <div class="container clearfix">
+        <div class="block-1 pull-left">
+          <img width="50px" class="logo" src="images/imgpsh_fullsize.png">
+        </div>
+        <div class="block-2 pull-left">
+          <h1 class="page-title">Wisky Portal</h1>
+          <div class="welcome-text">
+            <i>Start using free WiFi network</i>
           </div>
-          <!-- /Control Box 1: Google + Facebook + Continue -->
-
-
-          <!-- Control Box 2: 2 Text Field + 1 Button -->
-          <!-- <div class="control-box">
-            <div>
-              <i>Start using free WiFi network</i>
-            </div>
-            <input class="form-control" type="text" name="username" placeholder="Username">
-            <input class="form-control" type="password" name="password" placeholder="Password">
-            <a class="btn btn-success" href='#'>
-              Đăng nhập
+        </div>
+        <div class="block-3 pull-left">
+          <div class="inputs">
+            <a class="btn btn-link btn-google" href='#'>
+              <i class="fa fa-google-plus"></i>
+              Google (fast connect)
             </a>
-          </div> -->
-          <!-- /Control Box 2: 2 Text Field + 1 Button -->
-
-
-          <!-- Control Box 3: 1 Text Field + 1 Button -->
-          <!-- <div class="control-box">
-            <div>
-              <i>Start using free WiFi network</i>
-            </div>
-            <input class="form-control" type="password" name="password" placeholder="Password">
-            <a class="btn btn-success" href='#'>
-              Đăng nhập
+            <a class="btn btn-link btn-facebook" href='#'>
+              <i class="fa fa-facebook"></i>
+              Facebook (fast connect)
             </a>
-          </div> -->
-          <!-- /Control Box 3: 1 Text Field + 1 Button -->
-
-
-
+            <a class="btn btn-link btn-continue" href='#'>
+              Continue
+            </a>
+            <form>
+            <input class="password" type="password" placeholder="Please enter password">
+            <button class="btn btn-link btn-sign-in" type="submit">
+              Sign in
+            </button>
+            </form>
+          </div>
         </div>
       </div>
     </div>
@@ -138,8 +114,20 @@
 
   <script type="text/javascript" src="js/jquery-1.12.1.min.js"></script>
   <script type="text/javascript" src="js/bootstrap.js"></script>
-  <script type="text/javascript" src="js/jquery.interactive_bg_DnP_Old.js"></script>
+  <script type="text/javascript" src="js/jquery.interactive_bg_DnP.js"></script>
   <script type="text/javascript" src="js/script.js"></script>
+   <script type="text/javascript">
+  //   $(document).ready(function() {
+  //     $(window).resize(function() {
+
+  //       $(".wrapper > .ibg-bg").css({
+  //         width: $(window).outerWidth(),
+  //         height: $(window).outerHeight() - $('#bottom-bar').outerHeight()
+  //       })
+  //     });
+  //   })
+  </script>
+
 </body>
 </html>
 
