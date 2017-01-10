@@ -42,36 +42,6 @@
 	position: static;
 }
 
-/* BUTTONS */
-.btn-google,
-.btn-google:focus,
-.btn-google:visited{
-	background: #ef5350;
-}
-.btn-google:hover {
-	background: #e57373;
-}
-.btn-facebook,
-.btn-facebook:focus,
-.btn-facebook:visited {
-	background: #5c6bc0;
-}
-.btn-facebook:hover {
-	background: #7986cb;
-}
-.btn-email,
-.btn-email:focus,
-.btn-email:visited,
-.btn-continue,
-.btn-continue:focus,
-.btn-continue:visited {
-	background: #66bb6a;
-}
-.btn-email:hover,
-.btn-continue:hover {
-	background: #81c784;
-}
-
 /* HEADER */
 .header {
 	margin: 0 auto;
@@ -309,7 +279,7 @@ ul.docs-body li {
 	}
 }
 
-
+/* BOTTOM FORM */
 .bottom-bar {
 	color: white;
 	/*background: rgba(0,0,0,.5);*/
@@ -412,6 +382,7 @@ ul.docs-body li {
 	padding: 15px 0;
 	height: 54px;
 	background: #e0e0e0;
+	text-transform: none;
 }
 .input-bar-button:first-child {
 	border-top-left-radius: 4px;
@@ -463,4 +434,34 @@ input.input-bar-age {
 :-moz-placeholder { /* Firefox 18- */
   	text-align: center;
 	color: #9e9e9e;
+}
+
+/* BUTTONS */
+.btn-google,
+.btn-google:focus,
+.btn-google:visited{
+	background: #ef5350;
+}
+.btn-google:hover {
+	background: #e57373;
+}
+.btn-facebook,
+.btn-facebook:focus,
+.btn-facebook:visited {
+	background: #5c6bc0;
+}
+.btn-facebook:hover {
+	background: #7986cb;
+}
+.btn-email,
+.btn-email:focus,
+.btn-email:visited,
+.btn-continue,
+.btn-continue:focus,
+.btn-continue:visited {
+	background: #66bb6a;
+}
+.btn-email:hover,
+.btn-continue:hover {
+	background: #81c784;
 }
