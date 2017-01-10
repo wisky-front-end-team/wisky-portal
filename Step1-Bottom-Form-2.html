@@ -73,6 +73,20 @@
           <form action="#">
             Vui lòng nhập đầy đủ thông tin cá nhân
             <input id="input-email" class="input-email" type="email" name="" placeholder="Vui lòng điền e-mail của bạn">
+            <div class="input-bar">
+              <input id="input-gender" name="gender" type="hidden">
+              <div id="btn-male" class="input-bar-button waves-effect waves-light btn btn-gender">
+                <i class="fa fa-male"></i>
+                Nam
+              </div>
+              <div id="btn-female" class="input-bar-button waves-effect waves-light btn btn-gender">
+                <i class="fa fa-female"></i>
+                Nữ
+              </div>
+              <div class="input-bar-button waves-effect waves-light btn">
+                <input class="input-bar-age" type="number" value="18" min="0" max="100">
+              </div>
+            </div>
             <button type="submit" class="waves-effect waves-light btn btn-continue">Tiếp tục</button>
           </form>
         </div> 
@@ -124,11 +138,23 @@
   <script type="text/javascript" src="js/script.js"></script>
   <script type="text/javascript">
     $(document).ready(function() {
+
       $('#btn-email').click(function() {
         $('#login-inputs').slideDown(500, function(){
           $('#input-email').focus();
-        });
+        })
       })
+      $('#btn-male').click(function() {
+        $('#btn-female').removeClass('active');
+        $('#btn-male').addClass('active');
+        $('#input-gender').val('male');
+      })
+      $('#btn-female').click(function() {
+        $('#btn-male').removeClass('active');
+        $('#btn-female').addClass('active');
+        $('#input-gender').val('female');
+      })
+
     })
   </script>
 
