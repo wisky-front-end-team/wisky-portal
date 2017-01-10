@@ -56,21 +56,27 @@
           Kết nối Wi-Fi miễn phí với tài khoản
         </div>
         <div class="login-type">
-          <div class="login-type-button waves-effect waves-light btn btn-facebook">
-            Facebook
-          </div>
-          <div class="login-type-button waves-effect waves-light btn btn-google">
-            Google
-          </div>
-          <div class="login-type-button waves-effect waves-light btn btn-email">
-            Email
-          </div>
+          <a href="#" class="login-type-button waves-effect waves-light btn btn-facebook">
+            <i class="fa fa-facebook"></i>
+            <span>Facebook</span>
+          </a>
+          <a href="#" class="login-type-button waves-effect waves-light btn btn-google">
+            <i class="fa fa-google-plus"></i>
+            <span>Google</span>
+          </a>
+          <button id="btn-email" type="button" class="login-type-button waves-effect waves-light btn btn-email">
+            <i class="fa fa-envelope"></i>
+            <span>Email</span>
+          </button>
         </div>
+        <div class="login-inputs" id="login-inputs">
+          <form action="#">
+            Vui lòng nhập đầy đủ thông tin cá nhân
+            <input id="input-email" class="input-email" type="email" name="" placeholder="Vui lòng điền e-mail của bạn">
+            <button type="submit" class="waves-effect waves-light btn btn-continue">Tiếp tục</button>
+          </form>
+        </div> 
       </div>
-      <!-- <div class="login-inputs">
-        <input type="text" name="" placeholder="Enter your email">
-        <div class=""></div>
-      </div> -->
     </div>
 
   </div><!-- /wrapper bg -->
@@ -116,16 +122,14 @@
   
   <script type="text/javascript" src="js/jquery.interactive_bg_DnP.js"></script>
   <script type="text/javascript" src="js/script.js"></script>
-   <script type="text/javascript">
-  //   $(document).ready(function() {
-  //     $(window).resize(function() {
-
-  //       $(".wrapper > .ibg-bg").css({
-  //         width: $(window).outerWidth(),
-  //         height: $(window).outerHeight() - $('#bottom-bar').outerHeight()
-  //       })
-  //     });
-  //   })
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('#btn-email').click(function() {
+        $('#login-inputs').slideDown(500, function(){
+          $('#input-email').focus();
+        });
+      })
+    })
   </script>
 
 </body>
